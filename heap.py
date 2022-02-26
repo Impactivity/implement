@@ -1,59 +1,40 @@
 class MaxHeap:
 
     def __init__(self):
-
         self.data = [None]
 
     def insert(self, item):
-
         self.data.append(item)
-
         i = len(self.data) - 1
 
         while i > 1:
-
             if self.data[i] > self.data[(i // 2)]:
-
                 self.data[i], self.data[(i // 2)] = self.data[(i // 2)], self.data[i]
-
                 i = i // 2
-
             else:
                 break
 
     def remove(self):
 
         if len(self.data) > 1:
-
             self.data[1], self.data[-1] = self.data[-1], self.data[1]
-
             data = self.data.pop(-1)
-
             self.maxHeapify(1)
-
         else:
-
             data = None
-
         return data
 
     def maxHeapify(self, i):
 
         left = 2 * i
-
         right = (2 * i) + 1
-
         smallest = i
-
         # 왼쪽 자식이 존재하는지, 그리고 왼쪽 자식의 (키) 값이 (무엇보다?) 더 큰지를 판단합니다.
-
         if left < len(self.data) and self.data[i] < self.data[left]:
             # 조건이 만족하는 경우, smallest 는 왼쪽 자식의 인덱스를 가집니다.
-
             smallest = left
 
         # 오른쪽 자식이 존재하는지, 그리고 오른쪽 자식의 (키) 값이 (무엇보다?) 더 큰지를 판단합니다.
-
         if right < len(self.data) and self.data[i] > self.data[right]:
             # 조건이 만족하는 경우, smallest 는 오른쪽 자식의 인덱스를 가집니다.
             smallest = right
