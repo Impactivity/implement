@@ -8,6 +8,7 @@ class MaxHeap:
         i = len(self.data) - 1
 
         while i > 1:
+            # i // 2 는 노드이고 그 값보다 크면 위치 바꾸기
             if self.data[i] > self.data[(i // 2)]:
                 self.data[i], self.data[(i // 2)] = self.data[(i // 2)], self.data[i]
                 i = i // 2
