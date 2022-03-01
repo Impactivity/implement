@@ -4,9 +4,8 @@ read = sys.stdin.readline
 
 _min = math.inf
 
-
 N,M = map(int, read().split())
-graph = [list(map(str, read().strip())) for _ in range(m)]
+graph = [list(map(str, read().strip())) for _ in range(N)]
 answer = []
 
 for i in range(N-7):
@@ -27,3 +26,4 @@ for i in range(N-7):
                         first_B = first_B + 1
         answer.append(first_W)
         answer.append(first_B)
+print(min(answer))
