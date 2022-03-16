@@ -54,7 +54,7 @@ for i in range(2 * N - 1):
 print(ans)
 
 
-# 
+# solution 2
 # # 모래 계산하는 함수
 # def recount(time, dx, dy, direction):
 #     global ans, s_x, s_y
