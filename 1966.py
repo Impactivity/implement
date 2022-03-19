@@ -10,35 +10,56 @@ for i in range(T):
     N,M = map(int, read().split())
     priority = list(map(int, read().split()))
 
-    print_queue = deque()
+    # solution 1
+    print_queue = deque(priority)
+    m,cnt = M, 0
 
-    _max = 0
-    for i in range(len(priority)):
-        print_queue.append((i,priority[i]))
+    while True:
+        if print_queue[0] < max(print_queue):
+            print_queue.append(print_queue.popleft())
+            if 0 == m:
+                m = len(print_queue) - 1
+            else:
+                m -= 1
 
-    #우선순위 내림차순으로 정렬
-    priority.sort(reverse=True)
-    priority = deque(priority)
+        else:
+            print_queue.popleft()
+            cnt += 1
+            if 0 == m:
+                break
+            else:
+                m -= 1
+    print(cnt)
 
-    cnt = 0
-    is_True = False
-
-    while priority:
-        #현재 큐 최댓값
-        maxnum = priority.popleft()
-        cnt += 1
-        for i in range(N):
-            inx, num = print_queue.popleft()
-            # 큐 첫번째 우선순위가 최댓값이라면
-            if num == maxnum:
-                # inx가 M과 같으면 cnt수 출력하고 종료
-                if inx == M:
-                    print(cnt)
-                    is_True = True
-                    break
-                else:
-                    break
-            # 최댓값이 아닌경우에는 출력 순서가 뒤로 밀려난다.
-            print_queue.append((inx,num))
-        if is_True == True:
-            break
+    # solution 2
+    # print_queue = deque()
+    #
+    # for i in range(len(priority)):
+    #     print_queue.append((i,priority[i]))
+    #
+    # #우선순위 내림차순으로 정렬
+    # priority.sort(reverse=True)
+    # priority = deque(priority)
+    #
+    # cnt = 0
+    # is_True = False
+    #
+    # while priority:
+    #     #현재 큐 최댓값
+    #     maxnum = priority.popleft()
+    #     cnt += 1
+    #     for i in range(N):
+    #         inx, num = print_queue.popleft()
+    #         # 큐 첫번째 우선순위가 최댓값이라면
+    #         if num == maxnum:
+    #             # inx가 M과 같으면 cnt수 출력하고 종료
+    #             if inx == M:
+    #                 print(cnt)
+    #                 is_True = True
+    #                 break
+    #             else:
+    #                 break
+    #         # 최댓값이 아닌경우에는 출력 순서가 뒤로 밀려난다.
+    #         print_queue.append((inx,num))
+    #     if is_True == True:
+    #         break
