@@ -3,6 +3,8 @@ import sys
 read = sys.stdin.readline
 
 T = int(read())
+
+#팩토리얼 구현
 def factorial(n):
     num = 1
     for i in range(1, n+1):
