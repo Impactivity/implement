@@ -32,9 +32,47 @@ def solution(food_times, k):
                     return answer
 
 
-test_case = [[[1,1,0], 1 ],
+# 이분탐색으로 풀이
+# 모든 배열의 수를 mid초로 뺴고
+# 음수가 되는 수들을 더할 때 (n * mid) + 음수인 값이
+# k값이 된다는 것으로 아이디어 착안.
+
+def solution2(food_times , k):
+    l , r = 0, 1000000000
+
+    #배열의 수, 전체 초를 빼는 수, 마지막 인덱스 도달하는 초
+    n,cut,idx = len(food_times),0,0
+
+    while l <= r:
+        mid = (l+r) // 2 # Food_times의 모든 수를 mid로 빼면
+        v = n * mid # 마지막 인덱스에 도달할 때는 n * mid 초가 된다.
+        for f in food_times:
+            tmp = f - mid
+            if tmp < 0: #mid로 뺐을 때 음수가 되는 수들을 모두 더 해준 값이 실제 마지막 인덱스에 도달하는 초가 됨.
+                v += tmp
+        if v <= k:
+            cut,idx = mid,v
+            l = mid + 1
+        else:
+            r = mid - 1
+    print(f'cut = {cut},idx = {idx}')
+    food_times = [f-cut for f in food_times]
+    for i in range(n):
+        print(i,idx,k, food_times)
+        if food_times[i] > 0 and idx == k:
+            return i+1
+        else :
+            # 음수가
+            if food_times[i] > 0:
+                idx += 1
+
+    return -1
+
+
+
+test_case = [[[2,1,1], 3 ],
              [[30,10,4,1], 30],
              [[1,1,1], 6]
              ]
 
-print(solution(test_case[0][0] ,test_case[0][1]))
+print(solution2(test_case[0][0] ,test_case[0][1]))
