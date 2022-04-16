@@ -15,6 +15,8 @@ queue = deque()
 queue.append([0,0])
 viisted[0][0] = triangle[0][0]
 
+# 삼각형 꼭대기에서 내려오면서 더한 수의 최댓값을 구하는 문제
+# BFS로 순회할때마다 visited에 합한 수의 최댓값이 들어가도록 구현하여 마지막 행에 최댓값을 구하면 됨
 while queue:
     x,y = queue.popleft()
     for i in range(2):
