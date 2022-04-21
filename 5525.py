@@ -31,6 +31,8 @@ ioi = re.findall('I(?:OI)+' , s)
 count = 0
 
 for k in ioi:
+    # k를 2로 나누면 O의 갯수가 되는데 이는 IOI의 반복 횟수랑 같다.
+    # 이것을 n으로 빼주고 + 1을 해준면 문자열 일치 갯수가 된다.
     l = len(k) // 2 - n + 1
     if l > 0:
         count += l
